@@ -41,6 +41,21 @@ var BezierCurve = {
             p1[1] * (1 - t) + p2[1] * t
         ];
     },
+
+    getBezierCurvePoints1stOrder: function(numOfPoints, p1, p2) {
+        if (numOfPoints <= 1) {
+            return [];
+        }
+        var step = 1 / (numOfPoints - 1);
+        var points = [];
+
+        for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
+            points.push(BezierCurve.dividePoint(p1, p2, t));
+        }
+
+        return points;
+    },
+
     getBezierCurvePoints2ndOrder: function(numOfPoints, p1, p2, p3) {
         if (numOfPoints <= 1) {
             return [];

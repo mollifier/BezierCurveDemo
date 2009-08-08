@@ -73,6 +73,20 @@ testCases(test,
             assert.that(BezierCurve.equalPoint(actualPoints[index], point),
                 isTrue());
         });
+    },
+
+    function shouldBezierCurveGetBezierPoints1stOrder() {
+        var expectPoints = [
+            [10, 30], [20, 52.5], [30, 75], [40, 97.5], [50, 120]
+        ];
+
+        var actualPoints = BezierCurve.getBezierCurvePoints1stOrder(
+            5, [10, 30], [50, 120]);
+
+        forEachElementOf(expectPoints, function(point, index) {
+            assert.that(BezierCurve.equalPoint(actualPoints[index], point),
+                isTrue());
+        });
     }
 );
 
