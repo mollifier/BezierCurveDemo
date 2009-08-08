@@ -37,8 +37,8 @@ var BezierCurve = {
     // divide point internally to t : 1 - t
     dividePoint : function(p1, p2, t) {
         return [
-            p1[0] * t + p2[0] * (1 - t),
-            p1[1] * t + p2[1] * (1 - t)
+            p1[0] * (1 - t) + p2[0] * t,
+            p1[1] * (1 - t) + p2[1] * t
         ];
     },
     getBezierCurvePoints2ndOrder: function(numOfPoints, p1, p2, p3) {
