@@ -40,6 +40,27 @@ var BezierCurve = {
             p1[0] * t + p2[0] * (1 - t),
             p1[1] * t + p2[1] * (1 - t)
         ];
+    },
+    getBezierCurvePoints2ndOrder: function(numOfPoints, p1, p2, p3) {
+        if (numOfPoints <= 1) {
+            return [];
+        }
+        var step = 1 / (numOfPoints - 1);
+        var points = [];
+
+        // function aliases
+        var multi = BezierCurve.multiplePoint;
+        var plus = BezierCurve.plusPoint;
+
+        for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
+            var p;
+            p = multi((1 - t) * (1 - t), p1);
+            p = plus(p, multi(2 * (1 - t) * t, p2));
+            p = plus(p, multi(t * t, p3));
+            points.push(p);
+        }
+
+        return points;
     }
 };
 
