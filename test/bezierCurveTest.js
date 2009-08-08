@@ -36,6 +36,17 @@ testCases(test,
         assert.that(BezierCurve.equalPoint(actual, [24.12, 54.96]),
             isTrue());
     },
+    function shouldBezierCurveDividePointZeroOne() {
+        var actual = BezierCurve.dividePoint([11, 38], [52, 91], 0);
+        assert.that(BezierCurve.equalPoint(actual, [11, 38]),
+            isTrue());
+    },
+    function shouldBezierCurveDividePointOneZero() {
+        var actual = BezierCurve.dividePoint([11, 38], [52, 91], 1);
+        assert.that(BezierCurve.equalPoint(actual, [52, 91]),
+            isTrue());
+    },
+
 
     function shouldBezierCurveGetBezierPoints() {
         var expectPoints = [
