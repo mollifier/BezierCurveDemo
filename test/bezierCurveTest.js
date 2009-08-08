@@ -9,6 +9,10 @@ testCases(test,
         assert.that(BezierCurve.equalPoint([1, 2], [1, 3]),
             isFalse());
     },
+    function shouldBezierCurveEqualZero() {
+        assert.that(BezierCurve.equalPoint([0, 0], [0, 0]),
+            isTrue());
+    },
 
     function shouldBezierCurvePlusPoint() {
         var actual = BezierCurve.plusPoint([1, 2], [5, 8]);

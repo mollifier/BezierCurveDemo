@@ -6,12 +6,15 @@ var BezierCurve = {
             }
 
             var upperLimit, lowerLimit;
-            if (expected >= 0) {
+            if (expected >= accuracy) { // expected is positive
                 upperLimit = expected * (1 + accuracy);
                 lowerLimit = expected * (1 - accuracy);
-            } else {
+            } else if (expected <= -accuracy) { // expected is negative
                 upperLimit = expected * (1 - accuracy);
                 lowerLimit = expected * (1 + accuracy);
+            } else {    // expected is near zero
+                upperLimit = accuracy;
+                lowerLimit = -accuracy;
             }
 
             return actual < upperLimit && actual > lowerLimit;
