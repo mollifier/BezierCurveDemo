@@ -1,7 +1,25 @@
 var BezierCurve = {
     equalPoint : function(p1, p2) {
-        return p1[0] === p2[0] && p1[1] === p2[1];
+        var equalFloat = function(actual, expected, accuracy) {
+            if (!accuracy) {
+                accuracy = 0.01;
+            }
+
+            var upperLimit, lowerLimit;
+            if (expected >= 0) {
+                upperLimit = expected * (1 + accuracy);
+                lowerLimit = expected * (1 - accuracy);
+            } else {
+                upperLimit = expected * (1 - accuracy);
+                lowerLimit = expected * (1 + accuracy);
+            }
+
+            return actual < upperLimit && actual > lowerLimit;
+        };
+
+        return equalFloat(p1[0], p2[0]) && equalFloat(p1[1], p2[1]);
     },
+
     plusPoint : function(p1, p2) {
         return [p1[0] + p2[0], p1[1] + p2[1]];
     },
