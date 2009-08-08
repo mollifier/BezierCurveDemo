@@ -1,6 +1,15 @@
 eval(loadFile("src/bezierCurve.js"));
 
 testCases(test,
+    function shouldBezierCurveEqualPoint() {
+        assert.that(BezierCurve.equalPoint([1, 2], [1, 2]),
+            isTrue());
+    },
+    function shouldBezierCurveNotEqualPoint() {
+        assert.that(BezierCurve.equalPoint([1, 2], [1, 3]),
+            isFalse());
+    },
+
     function shouldBezierCurvePlusPoint() {
         assert.that(BezierCurve.plusPoint([1, 2], [5, 8]),
             containsInOrder(6, 10));
