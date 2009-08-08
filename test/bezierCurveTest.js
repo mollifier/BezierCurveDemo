@@ -25,6 +25,12 @@ testCases(test,
             isTrue());
     },
 
+    function shouldBezierCurveMultiplePoint() {
+        var actual = BezierCurve.multiplePoint(3, [5, 10]);
+        assert.that(BezierCurve.equalPoint(actual, [15, 30]),
+            isTrue());
+    },
+
     function shouldBezierCurveDividePoint() {
         var actual = BezierCurve.dividePoint([11, 38], [52, 91], 0.32);
         assert.that(BezierCurve.equalPoint(actual, [38.88, 74.04]),

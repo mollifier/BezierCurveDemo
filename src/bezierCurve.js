@@ -30,6 +30,10 @@ var BezierCurve = {
         return [p1[0] - p2[0], p1[1] - p2[1]];
     },
 
+    multiplePoint : function(scaler, point) {
+        return [scaler * point[0], scaler * point[1]];
+    },
+
     // divide point internally to t : 1 - t
     dividePoint : function(p1, p2, t) {
         return [
