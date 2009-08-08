@@ -2,7 +2,7 @@ eval(loadFile("src/bezierCurve.js"));
 
 testCases(test,
 	function shouldBezierCurveTest() {
-        assert.that(12, eq(triple(4)));
+        assert.that(triple(4), eq(12));
 	}
 );
 
