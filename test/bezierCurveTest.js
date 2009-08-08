@@ -8,6 +8,10 @@ testCases(test,
 	function shouldBezierCurveMinusPoint() {
         assert.that(BezierCurve.minusPoint([1, 10], [5, 8]),
             containsInOrder(-4, 2));
+    },
+	function shouldBezierCurveDividePoint() {
+        assert.that(BezierCurve.dividePoint([10, 30], [50, 90], 0.3),
+            containsInOrder(38, 72));
     }
 );
 
