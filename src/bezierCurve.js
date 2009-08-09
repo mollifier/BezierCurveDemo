@@ -35,7 +35,7 @@ var BezierCurve = {
     },
 
     // divide point internally to t : 1 - t
-    dividePoint : function(p1, p2, t) {
+    dividePoint : function(t, p1, p2) {
         return [
             p1[0] * (1 - t) + p2[0] * t,
             p1[1] * (1 - t) + p2[1] * t
@@ -50,7 +50,7 @@ var BezierCurve = {
         var points = [];
 
         for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
-            points.push(BezierCurve.dividePoint(p1, p2, t));
+            points.push(BezierCurve.dividePoint(t, p1, p2));
         }
 
         return points;
@@ -79,7 +79,7 @@ var BezierCurve = {
     },
 
     bezierPointT : function(t, p1, p2) {
-        return BezierCurve.dividePoint(p1, p2, t);
+        return BezierCurve.dividePoint(t, p1, p2);
     }
 };
 
