@@ -96,6 +96,18 @@ var BezierCurve = {
         }
 
         return ret;
+    },
+
+    getBezierCurvePoints: function(numOfPoints /* , points... */) {
+        var points = Array.prototype.slice.call(arguments, 1);
+        var step = 1 / (numOfPoints - 1);
+        var retPoints = [];
+
+        for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
+            retPoints.push(BezierCurve.bezierPointT(t, points));
+        }
+
+        return retPoints;
     }
 };
 

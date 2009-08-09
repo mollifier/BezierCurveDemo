@@ -47,13 +47,12 @@ testCases(test,
             isTrue());
     },
 
-
     function shouldBezierCurveGetBezierPoints() {
         var expectPoints = [
             [10, 30], [30.625, 65.625], [52.5, 82.5], [75.625, 80.625], [100, 60]
         ];
 
-        var actualPoints = BezierCurve.getBezierCurvePoints2ndOrder(
+        var actualPoints = BezierCurve.getBezierCurvePoints(
             5, [10, 30], [50, 120], [100, 60]);
 
         forEachElementOf(expectPoints, function(point, index) {
