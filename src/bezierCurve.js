@@ -78,20 +78,21 @@ var BezierCurve = {
         return points;
     },
 
-    bezierPointT : function(t /* , points */) {
-        var points = Array.prototype.slice.call(arguments, 1);
+    bezierPointT : function(t, points) {
+        var ret;
 
-        var ret = [];
-
-        if (points.length <= 1) {
+        if (! points || points.length <= 0) {
             ret = [];
-        } else if (points.length == 2) {
-            ret = BezierCurve.dividePoint(t, points[0], points[1]);
+        } else if (points.length == 1) {
+            ret = points[0];
         } else {
+            var first = points.slice(0, -1);
+            var last = points.slice(1);
+
             ret = BezierCurve.dividePoint(
                 t,
-                BezierCurve.bezierPointT(t, points[0], points[1]),
-                BezierCurve.bezierPointT(t, points[1], points[2]));
+                BezierCurve.bezierPointT(t, first),
+                BezierCurve.bezierPointT(t, last));
         }
 
         return ret;
