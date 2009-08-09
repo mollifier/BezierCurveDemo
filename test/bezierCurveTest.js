@@ -87,6 +87,25 @@ testCases(test,
             assert.that(BezierCurve.equalPoint(actualPoints[index], point),
                 isTrue());
         });
+    },
+
+    function shouldBezierPointT1stOrder() {
+        var expectPoints = [
+            [1, 3], [2, 4.25], [3, 5.5], [4, 6.75], [5, 8]
+        ];
+        var ts = [0, 0.25, 0.5, 0.75, 1];
+
+        var actualPoints = [];
+        for (var i = 0; i < ts.length; i++) {
+            actualPoints.push(
+                BezierCurve.bezierPointT(ts[i], [1, 3], [5, 8]));
+        }
+
+        forEachElementOf(expectPoints, function(point, i) {
+            assert.that(
+                BezierCurve.equalPoint(actualPoints[i], point),
+                isTrue());
+        });
     }
 );
 

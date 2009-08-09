@@ -76,6 +76,10 @@ var BezierCurve = {
         }
 
         return points;
+    },
+
+    bezierPointT : function(t, p1, p2) {
+        return BezierCurve.dividePoint(p1, p2, t);
     }
 };
 
