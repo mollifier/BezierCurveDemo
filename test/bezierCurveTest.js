@@ -65,7 +65,7 @@ testCases(test,
             [10, 30], [37.774, 73.330], [67.771, 83.334], [100, 60]
         ];
 
-        var actualPoints = BezierCurve.getBezierCurvePoints2ndOrder(
+        var actualPoints = BezierCurve.getBezierCurvePoints(
             4, [10, 30], [50, 120], [100, 60]);
 
         forEachElementOf(expectPoints, function(point, index) {
@@ -79,7 +79,7 @@ testCases(test,
             [10, 30], [20, 52.5], [30, 75], [40, 97.5], [50, 120]
         ];
 
-        var actualPoints = BezierCurve.getBezierCurvePoints1stOrder(
+        var actualPoints = BezierCurve.getBezierCurvePoints(
             5, [10, 30], [50, 120]);
 
         forEachElementOf(expectPoints, function(point, index) {

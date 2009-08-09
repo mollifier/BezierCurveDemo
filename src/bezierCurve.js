@@ -42,42 +42,9 @@ var BezierCurve = {
         ];
     },
 
-    getBezierCurvePoints1stOrder: function(numOfPoints, p1, p2) {
-        if (numOfPoints <= 1) {
-            return [];
-        }
-        var step = 1 / (numOfPoints - 1);
-        var points = [];
-
-        for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
-            points.push(BezierCurve.dividePoint(t, p1, p2));
-        }
-
-        return points;
-    },
-
-    getBezierCurvePoints2ndOrder: function(numOfPoints, p1, p2, p3) {
-        if (numOfPoints <= 1) {
-            return [];
-        }
-        var step = 1 / (numOfPoints - 1);
-        var points = [];
-
-        // function aliases
-        var multi = BezierCurve.multiplePoint;
-        var plus = BezierCurve.plusPoint;
-
-        for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
-            var p;
-            p = multi((1 - t) * (1 - t), p1);
-            p = plus(p, multi(2 * (1 - t) * t, p2));
-            p = plus(p, multi(t * t, p3));
-            points.push(p);
-        }
-
-        return points;
-    },
-
+    /*
+     * get 1 BezierCurve point for given t and controll points array
+     */
     bezierPointT : function(t, points) {
         var ret;
 
@@ -98,6 +65,10 @@ var BezierCurve = {
         return ret;
     },
 
+    /*
+     * get array of BezierCurve points for given controll points array
+     * numOfPoints is length of return array
+     */
     getBezierCurvePoints: function(numOfPoints /* , points... */) {
         var points = Array.prototype.slice.call(arguments, 1);
         var step = 1 / (numOfPoints - 1);
