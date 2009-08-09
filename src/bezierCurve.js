@@ -46,23 +46,18 @@ var BezierCurve = {
      * get 1 BezierCurve point for given t and controll points array
      */
     bezierPointT : function(t, points) {
-        var ret;
+        var temp = [];
 
-        if (! points || points.length <= 0) {
-            ret = [];
-        } else if (points.length == 1) {
-            ret = points[0];
-        } else {
-            var first = points.slice(0, -1);
-            var last = points.slice(1);
-
-            ret = BezierCurve.dividePoint(
-                t,
-                BezierCurve.bezierPointT(t, first),
-                BezierCurve.bezierPointT(t, last));
+        while (points.length >= 2) {
+            temp = [];
+            for (var i = 0; i <= points.length - 2; i++) {
+                temp.push(
+                    BezierCurve.dividePoint(t, points[i], points[i+1]));
+            }
+            points = temp;
         }
 
-        return ret;
+        return points[0];
     },
 
     /*
