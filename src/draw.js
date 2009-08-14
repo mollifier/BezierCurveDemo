@@ -1,5 +1,10 @@
 var Draw = {
     init: function() {
+        document.getElementById("drawButton").
+            addEventListener("click", Draw.drawBezierCurve, false);
+    },
+
+    drawBezierCurve: function() {
         var canvas = document.getElementById("BezierCurve");
         var context = canvas.getContext("2d");
 
@@ -8,7 +13,7 @@ var Draw = {
         context.lineWidth = 3.0;
 
         var points = BezierCurve.getBezierCurvePoints(
-            5, [10, 10], [150, 200], [350, 80]);
+            20, [10, 10], [150, 400], [350, 80]);
 
         context.beginPath();
         for (var i = 0; i < points.length; i++) {
