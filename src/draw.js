@@ -2,8 +2,11 @@ var Draw = {
     init: function() {
         var canvas = document.getElementById("BezierCurve");
         var context = canvas.getContext("2d");
-        context.fillStyle = "#f00";
-        context.fillRect(0, 0, 30, 30);
+        context.fillStyle = "#0000ff";
+
+        context.beginPath();
+        context.arc(5, 5, 5, 0, 2 * Math.PI, true);
+        context.fill();
     }
 };
 
