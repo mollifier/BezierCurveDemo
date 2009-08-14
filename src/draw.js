@@ -1,7 +1,9 @@
 var Draw = {
     init: function() {
         var canvas = document.getElementById("BezierCurve");
-        canvas.innerHTML = "<b>demo js</b>";
+        var context = canvas.getContext("2d");
+        context.fillStyle = "#f00";
+        context.fillRect(0, 0, 30, 30);
     }
 };
 
