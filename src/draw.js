@@ -7,9 +7,8 @@ var Draw = {
         context.strokeStyle = "#0000ff";
         context.lineWidth = 3.0;
 
-        var points = [
-            [10, 30], [60, 30], [150, 80], [110, 100]
-        ];
+        var points = BezierCurve.getBezierCurvePoints(
+            5, [10, 10], [150, 200], [350, 80]);
 
         context.beginPath();
         for (var i = 0; i < points.length; i++) {
