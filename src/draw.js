@@ -1,24 +1,30 @@
 var Draw = {
     init: function() {
+        var canvas = document.getElementById("BezierCurve");
+        Draw.context = canvas.getContext("2d");
+
         document.getElementById("drawButton").
-            addEventListener("click", Draw.drawBezierCurve, false);
+            addEventListener("click", function() {Draw.drawBezierCurve();}, false);
+
+        document.getElementById("clearButton").
+            addEventListener("click", function() {Draw.clear();}, false);
     },
 
-    drawBezierCurve: function() {
-        var canvas = document.getElementById("BezierCurve");
-        var context = canvas.getContext("2d");
+    // CanvasRenderingContext2D object
+    context: null,
 
+    drawBezierCurve: function() {
         // line style
-        context.strokeStyle = "#0000ff";
-        context.lineWidth = 3.0;
+        this.context.strokeStyle = "#0000ff";
+        this.context.lineWidth = 3.0;
 
         var points = Draw.getDrawPoints();
 
-        context.beginPath();
+        this.context.beginPath();
         for (var i = 0; i < points.length; i++) {
-            context.lineTo(points[i][0], points[i][1]);
+            this.context.lineTo(points[i][0], points[i][1]);
         }
-        context.stroke();
+        this.context.stroke();
     },
 
     getDrawPoints: function() {
@@ -38,6 +44,10 @@ var Draw = {
             numOfPoints, controlPoints[0], controlPoints[1], controlPoints[2]);
 
         return ret;
+    },
+
+    clear: function() {
+        this.context.clearRect(0, 0, 1000, 1000);
     },
 
     strToInt: function(str) {
