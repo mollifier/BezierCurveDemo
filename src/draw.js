@@ -12,14 +12,22 @@ var Draw = {
         context.strokeStyle = "#0000ff";
         context.lineWidth = 3.0;
 
+        var numOfPoints = document.getElementById("numOfPoints").value;
+        numOfPoints = Draw.strToInt(numOfPoints);
+
         var points = BezierCurve.getBezierCurvePoints(
-            20, [10, 10], [150, 400], [350, 80]);
+            numOfPoints, [10, 10], [150, 400], [350, 80]);
 
         context.beginPath();
         for (var i = 0; i < points.length; i++) {
             context.lineTo(points[i][0], points[i][1]);
         }
         context.stroke();
+    },
+
+    strToInt: function(str) {
+        str = str.replace(/^\s+/, "").replace(/\s+$/, "");
+        return parseInt(str, 10);
     }
 };
 
