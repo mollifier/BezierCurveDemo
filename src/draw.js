@@ -1,7 +1,7 @@
 var Draw = {
     init: function() {
-        var canvas = document.getElementById("BezierCurve");
-        Draw.context = canvas.getContext("2d");
+        Draw.canvas = document.getElementById("BezierCurve");
+        Draw.context = Draw.canvas.getContext("2d");
 
         document.getElementById("drawButton").
             addEventListener("click", function() {Draw.drawBezierCurve();}, false);
@@ -9,6 +9,9 @@ var Draw = {
         document.getElementById("clearButton").
             addEventListener("click", function() {Draw.clear();}, false);
     },
+
+    // Canvas object
+    canvas: null,
 
     // CanvasRenderingContext2D object
     context: null,
@@ -47,7 +50,7 @@ var Draw = {
     },
 
     clear: function() {
-        this.context.clearRect(0, 0, 1000, 1000);
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
 
     strToInt: function(str) {
