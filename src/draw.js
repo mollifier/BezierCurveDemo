@@ -17,11 +17,16 @@ var Draw = {
     context: null,
 
     drawBezierCurve: function() {
-        // line style
-        this.context.strokeStyle = "#0000ff";
-        this.context.lineWidth = 3.0;
-
         var points = Draw.getDrawPoints();
+        this.drawLines(points, "#0000ff");
+    },
+
+    // @points: array of point
+    // e.g. [[10, 10], [100, 400], [120, 50]]
+    drawLines: function(points, style) {
+        // line style
+        this.context.strokeStyle = style;
+        this.context.lineWidth = 3.0;
 
         this.context.beginPath();
         for (var i = 0; i < points.length; i++) {
