@@ -35,18 +35,24 @@ var Draw = {
         this.context.stroke();
     },
 
-    getDrawPoints: function() {
-        var ret = [];
-
-        var numOfPoints = document.getElementById("numOfPoints").value;
-        numOfPoints = Draw.strToInt(numOfPoints);
-
+    getControlPoints: function() {
         var controlPoints = [];
 
         for (var i = 0; i <= 2; i++) {
             var temp = document.getElementById("controlPoint" + i).value;
             controlPoints.push(eval(temp));
         }
+
+        return controlPoints;
+    },
+
+    getDrawPoints: function() {
+        var ret = [];
+
+        var numOfPoints = document.getElementById("numOfPoints").value;
+        numOfPoints = Draw.strToInt(numOfPoints);
+
+        var controlPoints = this.getControlPoints();
 
         ret = BezierCurve.getBezierCurvePoints(
             numOfPoints, controlPoints[0], controlPoints[1], controlPoints[2]);
