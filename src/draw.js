@@ -17,8 +17,8 @@ var Draw = {
     context: null,
 
     drawBezierCurve: function() {
-        var points = Draw.getDrawPoints();
-        this.drawLines(points, "#0000ff");
+        this.drawLines(this.getDrawPoints(), "#0000ff");
+        this.drawLines(this.getControlPoints(), "#0000ff");
     },
 
     // @points: array of point
