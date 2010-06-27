@@ -40,6 +40,8 @@ var Draw = {
 
         for (var i = 0; i <= 2; i++) {
             var temp = document.getElementById("controlPoint" + i).value;
+            /*jslint evil: true */
+            // TODO : 暫定的に eval を許可する
             controlPoints.push(eval(temp));
         }
 
