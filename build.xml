@@ -31,14 +31,16 @@
 	</scriptdef>
 
 	<target name="run-js-lint">
-		<jslintant options="{eqeqeq : false, white: true, plusplus : false, bitwise : true, passfail: false, browser: true, evil: true, forin: true, newprimitive: true}">
+		<jslintant options="{eqeqeq : false, white: false, plusplus : false, bitwise : true, passfail: false, browser: true, evil: true, forin: true, newprimitive: true}">
 		    <fileset dir="src">
 		        <include name="**/*.js"/>
 		    </fileset>
 		</jslintant>
 
-		<jslintant options="{eqeqeq : true, white: true, plusplus : false, bitwise : true, evil: true, passfail: false}">
-			<fileset dir="test"/>
+		<jslintant options="{eqeqeq : true, white: false, plusplus : false, bitwise : true, evil: true, passfail: false}">
+			<fileset dir="test">
+        <include name="*.js"/>
+      </fileset>
 		</jslintant>
 
 	</target>
