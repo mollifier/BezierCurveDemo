@@ -125,6 +125,20 @@ testCases(test,
                 BezierCurve.equalPoint(actualPoints[i], point),
                 isTrue());
         });
+    },
+
+    // 取得する配列の要素数が 2 以上でなくてはならないことを確認する
+    function getBezierPoints1stArgumentMustBeGreaterThan1() {
+        var expectPoints = [];
+
+        var actualPoints0 = BezierCurve.getBezierCurvePoints(
+            0, [10, 30], [50, 120], [100, 60]);
+
+        var actualPoints1 = BezierCurve.getBezierCurvePoints(
+            1, [10, 30], [50, 120], [100, 60]);
+
+        assert.that(actualPoints0.length, eq(0));
+        assert.that(actualPoints1.length, eq(0));
     }
 );
 

@@ -74,10 +74,15 @@ var BezierCurve = {
     // numOfPoints が取得できる配列の要素数である。
     // numOfPoints の値が大きいほど取得できる配列の要素数が増え、
     // より高い精度でベジエ曲線を近似できるようになる。
+    // numOfPoints は2以上でなくてはならない。
     // 呼び出し方の例:
     // var actualPoints = BezierCurve.getBezierCurvePoints(
     //   5, [10, 30], [50, 120], [100, 60]);
     getBezierCurvePoints: function(numOfPoints /* , points... */) {
+        if (numOfPoints <= 1) {
+            return [];
+        }
+
         var points = Array.prototype.slice.call(arguments, 1);
         var step = 1 / (numOfPoints - 1);
         var retPoints = [];
