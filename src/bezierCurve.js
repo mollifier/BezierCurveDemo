@@ -78,20 +78,30 @@ var BezierCurve = {
     // 呼び出し方の例:
     // var actualPoints = BezierCurve.getBezierCurvePoints(
     //   5, [10, 30], [50, 120], [100, 60]);
-    getBezierCurvePoints: function(numOfPoints /* , points... */) {
+    // または
+    // var actualPoints = BezierCurve.getBezierCurvePoints(
+    //   5, [[10, 30], [50, 120], [100, 60]]);
+    getBezierCurvePoints: function(numOfPoints /*, pointsArray or points... */) {
         if (numOfPoints <= 1) {
             return [];
         }
 
-        var points = Array.prototype.slice.call(arguments, 1);
+        var pointsArray;
+        if (arguments.length === 2) {
+            pointsArray = arguments[1];
+        } else {
+            pointsArray = Array.prototype.slice.call(arguments, 1);
+        }
+
         var step = 1 / (numOfPoints - 1);
         var retPoints = [];
 
         for (var i = 0, t = 0; i < numOfPoints; i++, t += step) {
-            retPoints.push(BezierCurve.bezierPointT(t, points));
+            retPoints.push(BezierCurve.bezierPointT(t, pointsArray));
         }
 
         return retPoints;
     }
+
 };
 

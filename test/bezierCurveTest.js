@@ -139,6 +139,21 @@ testCases(test,
 
         assert.that(actualPoints0.length, eq(0));
         assert.that(actualPoints1.length, eq(0));
+    },
+
+    // getBezierCurvePoints で制御点の配列も指定できることを確認する
+    function getBezierPointsSpecifyControlPointsArray() {
+        var expectPoints = [
+            [10, 30], [20, 52.5], [30, 75], [40, 97.5], [50, 120]
+        ];
+
+        var actualPoints = BezierCurve.getBezierCurvePoints(
+            5, [[10, 30], [50, 120]]);
+
+        forEachElementOf(expectPoints, function(point, index) {
+            assert.that(BezierCurve.equalPoint(actualPoints[index], point),
+                isTrue());
+        });
     }
 );
 

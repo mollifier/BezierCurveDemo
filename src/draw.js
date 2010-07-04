@@ -63,10 +63,8 @@ var Draw = {
         var numOfPoints = document.getElementById("numOfPoints").value;
         numOfPoints = this.strToInt(numOfPoints);
 
-        var controlPoints = this.getControlPoints();
-
         ret = BezierCurve.getBezierCurvePoints(
-            numOfPoints, controlPoints[0], controlPoints[1], controlPoints[2]);
+            numOfPoints, this.getControlPoints());
 
         return ret;
     },
