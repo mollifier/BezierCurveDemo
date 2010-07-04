@@ -41,11 +41,15 @@ var Draw = {
     getControlPoints: function() {
         var controlPoints = [];
 
-        for (var i = 0; i <= 2; i++) {
-            var temp = document.getElementById("controlPoint" + i).value;
-            // TODO : eval を使用しないように変更する
-            /*jslint evil: true */
-            controlPoints.push(eval(temp));
+        var pointsElement = document.getElementById("controlPoints");
+
+        var xPoints = pointsElement.getElementsByClassName("pointX");
+        var yPoints = pointsElement.getElementsByClassName("pointY");
+
+        var point;
+        for (var i = 0; i < xPoints.length; i++) {
+            point = [this.strToInt(xPoints[i].value), this.strToInt(yPoints[i].value)];
+            controlPoints.push(point);
         }
 
         return controlPoints;
@@ -79,5 +83,5 @@ var Draw = {
     }
 };
 
-window.addEventListener("load", Draw.init, false);
+window.addEventListener("load", function() { Draw.init(); }, false);
 

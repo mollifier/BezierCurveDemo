@@ -9,18 +9,25 @@
   </head>
 
   <body>
-    <h1>BezierCurve Demo</h1>
-    <p>num of points: <input type="text" size="5" id="numOfPoints" /></p>
-    <!--
-      example input:
-      Control Point 0: [10,30]
-      Control Point 1: [180, 400]
-      Control Point 2: [230, 80]
-    -->
-    <p>
-      Control Point 0: <input type="text" size="8" id="controlPoint0" />
-      Control Point 1: <input type="text" size="8" id="controlPoint1" />
-      Control Point 2: <input type="text" size="8" id="controlPoint2" />
+    <h1>ベジエ曲線のデモ</h1>
+
+    <p>分割数: <input type="text" size="5" id="numOfPoints" value="20" /></p>
+
+    <p id="controlPoints">
+      <span>
+      X <input type="text" size="5" class="pointX" value="10" />
+      Y <input type="text" size="5" class="pointY" value="30" />
+      </span>
+
+      <span>
+      X <input type="text" size="5" class="pointX" value="180" />
+      Y <input type="text" size="5" class="pointY" value="400" />
+      </span>
+
+      <span>
+      X <input type="text" size="5" class="pointX" value="270" />
+      Y <input type="text" size="5" class="pointY" value="50" />
+      </span>
     </p>
 
     <p>
