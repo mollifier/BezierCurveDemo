@@ -1,8 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 
 <html>
   <head>
     <title>bezierCurveDemo</title>
+    <link rel="stylesheet" href="bezierCurveDemo.css" type="text/css" />
     <script type="application/javascript" src="bezierCurve.js"></script>
     <script type="application/javascript" src="draw.js"></script>
     <meta http-equiv="Content-Script-Type" content="application/javascript">
@@ -35,6 +36,8 @@
       <input type="button" id="drawButton" value="Draw" />
       <input type="button" id="clearButton" value="Clear" />
     </p>
+
+    <div class="control-point"></div>
 
     <canvas id="BezierCurve" width="1000" height="1000"></canvas>
   </body>
