@@ -1,3 +1,5 @@
+// bezierCurve.js が必要
+
 var Draw = {
     init: function() {
         this.canvas = document.getElementById("BezierCurve");
@@ -9,6 +11,19 @@ var Draw = {
 
         document.getElementById("clearButton").
             addEventListener("click", function() { self.clear(); }, false);
+
+        // 制御点を表示する
+        var points = this.getControlPoints();
+        for (var i = 0; i < points.length; i++) {
+          var div = document.createElement("div");
+          div.className = "control-point";
+          div.style.left = points[i][0].toString() + "px";
+          div.style.top = points[i][1].toString() + "px";
+
+          document.getElementById("container").appendChild(div);
+
+          this.controlPointElements.push(div);
+        }
     },
 
     // Canvas オブジェクト
@@ -16,6 +31,9 @@ var Draw = {
 
     // CanvasRenderingContext2D オブジェクト
     context: null,
+
+    // 制御点を表す要素の配列
+    controlPointElements: [],
 
     drawBezierCurve: function() {
         this.drawLines(this.getControlPoints(), "#ff4500", 1.0);
@@ -38,6 +56,7 @@ var Draw = {
     },
 
     // input 要素に入力された制御点の配列を取得する
+    // １つの制御点は [x座標, y座標] の順で並んだ整数値の配列で表す
     getControlPoints: function() {
         var controlPoints = [];
 
