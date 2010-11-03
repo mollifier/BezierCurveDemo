@@ -33,6 +33,8 @@ var Draw = {
             addEventListener("click", function() { self.translateBezierCurve(-dy, 0); }, false);
     },
 
+    bezierCurveIsShown: false,
+
     // Canvas オブジェクト
     canvas: null,
 
@@ -45,6 +47,8 @@ var Draw = {
 
         this.drawLines(controlPoints, "#ff4500", 1.0);
         this.drawLines(bezierPoints, "#0000ff", 3.0);
+
+        this.bezierCurveIsShown = true;
     },
 
     // @points: 点の配列
@@ -118,22 +122,24 @@ var Draw = {
     // x : 横方向の移動量。正の値の場合は右、負の値の場合は左に移動する
     // y : 縦方向の移動量。正の値の場合は下、負の値の場合は上に移動する
     translateBezierCurve: function(x, y) {
+        if (! this.bezierCurveIsShown) {
+            return;
+        }
+
         var controlPoints = this.getInputControlPoints();
         for (var i = 0; i < controlPoints.length; i++) {
             controlPoints[i][0] += x;
             controlPoints[i][1] += y;
         }
         this.setInputControlPoints(controlPoints);
-        var bezierPoints = this.getDrawPoints(controlPoints);
-
         this.clear();
-        this.drawLines(controlPoints, "#ff4500", 1.0);
-        this.drawLines(bezierPoints, "#0000ff", 3.0);
+        this.drawBezierCurve();
     },
 
     // canvas で描いた線を消す
     clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.bezierCurveIsShown = false;
     },
 
     // 文字列が表す数値に変換する
