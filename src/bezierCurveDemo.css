@@ -2,30 +2,30 @@
   position : relative;
 }
 
-#slider-area {
+.slider-controller {
   position : relative;
   height : 100px;
 }
 
-#slider-area > #slideUp {
+.slider-controller #slideUp {
   position : absolute;
   margin-top : 0px;
   margin-left : 44px;
 }
 
-#slider-area > #slideRight {
+.slider-controller #slideRight {
   position : absolute;
   margin-top : 30px;
   margin-left : 90px;
 }
 
-#slider-area > #slideLeft {
+.slider-controller #slideLeft {
   position : absolute;
   margin-top : 30px;
   margin-left : 0px;
 }
 
-#slider-area > #slideDown {
+.slider-controller #slideDown {
   position : absolute;
   margin-top : 60px;
   margin-left : 44px;

@@ -37,15 +37,22 @@
       <input type="button" id="clearButton" value="Clear" />
     </p>
 
-    <p id="slider-area" >
-      <input type="button" id="slideUp" value="^" />
-      <input type="button" id="slideRight" value="&gt;" />
-      <input type="button" id="slideDown" value="v" />
-      <input type="button" id="slideLeft" value="&lt;" />
+    <p class="beziercurve-controller">
+      <p class="slider-controller" >
+        <input type="button" id="slideUp" value="^" />
+        <input type="button" id="slideRight" value="&gt;" />
+        <input type="button" id="slideDown" value="v" />
+        <input type="button" id="slideLeft" value="&lt;" />
+      </p>
+
+      <p class="magnify-controller" >
+        <input type="text" size="3" id="magnifyScale" value="3" />
+        <input type="button" id="magnify" value="拡大する" />
+      </p>
     </p>
 
     <div id="container">
-      <canvas id="BezierCurve" width="1000" height="1000"></canvas>
+      <canvas id="BezierCurve"></canvas>
     </div>
   </body>
 </html>

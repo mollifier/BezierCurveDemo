@@ -2,10 +2,7 @@
 
 var Draw = {
     init: function() {
-        this.initControlPoints();
-
-        this.canvas = document.getElementById("BezierCurve");
-        this.context = this.canvas.getContext("2d");
+        this.initValues();
 
         var self = this;
         document.getElementById("drawButton").
@@ -14,7 +11,7 @@ var Draw = {
         document.getElementById("clearButton").
             addEventListener("click", function() {
                     self.clear();
-                    self.initControlPoints(); },
+                    self.initValues(); },
                 false);
 
         var dx = 40;
@@ -31,6 +28,9 @@ var Draw = {
 
         document.getElementById("slideLeft").
             addEventListener("click", function() { self.translateBezierCurve(-dy, 0); }, false);
+
+        document.getElementById("magnify").
+            addEventListener("click", function() { self.magnifyBezierCurve(self.getMagnifyScale()); }, false);
     },
 
     bezierCurveIsShown: false,
@@ -66,10 +66,22 @@ var Draw = {
         this.context.stroke();
     },
 
+    initialCanvasSize : { width: 500, height : 500 },
     initialControlPoints : [[10, 30], [180, 400], [270, 50]],
+    initialMagnifyScale : 2,
 
-    initControlPoints : function() {
+    initValues : function() {
+        if (! this.canvas) {
+            this.canvas = document.getElementById("BezierCurve");
+        }
+        if (! this.context) {
+            this.context = this.canvas.getContext("2d");
+        }
+        this.canvas.width = this.initialCanvasSize.width;
+        this.canvas.height = this.initialCanvasSize.height;
+
         this.setInputControlPoints(this.initialControlPoints);
+        this.setMagnifyScale(this.initialMagnifyScale);
     },
 
     // input 要素に入力された制御点の配列を取得する
@@ -104,6 +116,16 @@ var Draw = {
         }
     },
 
+    getMagnifyScale: function() {
+        var elem = document.getElementById("magnifyScale");
+        return this.strToFloat(elem.value);
+    },
+
+    setMagnifyScale: function(value) {
+        var elem = document.getElementById("magnifyScale");
+        elem.value = value;
+    },
+
     // ベジエ曲線を折れ線で近似した点の配列を取得する
     getDrawPoints: function(controlPoints) {
         var ret = [];
@@ -136,16 +158,43 @@ var Draw = {
         this.drawBezierCurve();
     },
 
+    // 制御点を拡大させて新しいベジエ曲線を描く
+    magnifyBezierCurve: function(a) {
+        if (! this.bezierCurveIsShown) {
+            return;
+        }
+
+        var controlPoints = this.getInputControlPoints();
+        for (var i = 0; i < controlPoints.length; i++) {
+            controlPoints[i][0] *= a;
+            controlPoints[i][1] *= a;
+        }
+        this.setInputControlPoints(controlPoints);
+        this.clear();
+
+        // canvas のサイズも大きくして拡大した図がはみ出ないようにする
+        this.canvas.width *= a;
+        this.canvas.height *= a;
+
+        this.drawBezierCurve();
+    },
+
     // canvas で描いた線を消す
     clear: function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.bezierCurveIsShown = false;
     },
 
-    // 文字列が表す数値に変換する
+    // 文字列が表す整数値に変換する
     strToInt: function(str) {
         str = str.replace(/^\s+/, "").replace(/\s+$/, "");
         return parseInt(str, 10);
+    },
+
+    // 文字列が表す実数値に変換する
+    strToFloat: function(str) {
+        str = str.replace(/^\s+/, "").replace(/\s+$/, "");
+        return parseFloat(str);
     }
 };
 
