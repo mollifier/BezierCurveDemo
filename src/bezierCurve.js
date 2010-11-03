@@ -1,3 +1,7 @@
+// auther : mollifier http://d.hatena.ne.jp/mollifier/
+// license : MIT License.
+// http://www.opensource.org/licenses/mit-license.php
+
 // ベジエ曲線クラス
 // 2次元平面上の1つの点を [x, y] と x 座標、 y 座標の順に
 // 並べた配列で表現する。

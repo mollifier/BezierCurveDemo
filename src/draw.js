@@ -1,3 +1,7 @@
+// auther : mollifier http://d.hatena.ne.jp/mollifier/
+// license : MIT License.
+// http://www.opensource.org/licenses/mit-license.php
+
 // bezierCurve.js が必要
 
 var Draw = {
