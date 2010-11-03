@@ -11,6 +11,21 @@ var Draw = {
 
         document.getElementById("clearButton").
             addEventListener("click", function() { self.clear(); }, false);
+
+        var dx = 40;
+        var dy = 50;
+
+        document.getElementById("slideUp").
+            addEventListener("click", function() { self.translateBezierCurve(0, -dx); }, false);
+
+        document.getElementById("slideDown").
+            addEventListener("click", function() { self.translateBezierCurve(0, dx); }, false);
+
+        document.getElementById("slideRight").
+            addEventListener("click", function() { self.translateBezierCurve(dy, 0); }, false);
+
+        document.getElementById("slideLeft").
+            addEventListener("click", function() { self.translateBezierCurve(-dy, 0); }, false);
     },
 
     // Canvas オブジェクト
@@ -61,6 +76,19 @@ var Draw = {
         return controlPoints;
     },
 
+    // input 要素の入力値を指定された制御点の座標で上書きする
+    setInputControlPoints: function(points) {
+        var pointsElement = document.getElementById("controlPoints");
+
+        var xPoints = pointsElement.getElementsByClassName("pointX");
+        var yPoints = pointsElement.getElementsByClassName("pointY");
+
+        for (var i = 0; i < xPoints.length; i++) {
+            xPoints[i].value = points[i][0].toString();
+            yPoints[i].value = points[i][1].toString();
+        }
+    },
+
     // ベジエ曲線を折れ線で近似した点の配列を取得する
     getDrawPoints: function(controlPoints) {
         var ret = [];
@@ -72,6 +100,24 @@ var Draw = {
         ret = BezierCurve.getBezierCurvePoints(numOfPoints, controlPoints);
 
         return ret;
+    },
+
+    // 制御点を平行移動させて新しいベジエ曲線を描く
+    // 結果として、既存のベジエ曲線を平行させたものと同じ曲線が得られる
+    // x : 横方向の移動量。正の値の場合は右、負の値の場合は左に移動する
+    // y : 縦方向の移動量。正の値の場合は下、負の値の場合は上に移動する
+    translateBezierCurve: function(x, y) {
+        var controlPoints = this.getInputControlPoints();
+        for (var i = 0; i < controlPoints.length; i++) {
+            controlPoints[i][0] += x;
+            controlPoints[i][1] += y;
+        }
+        this.setInputControlPoints(controlPoints);
+        var bezierPoints = this.getDrawPoints(controlPoints);
+
+        this.clear();
+        this.drawLines(controlPoints, "#ff4500", 1.0);
+        this.drawLines(bezierPoints, "#0000ff", 3.0);
     },
 
     // canvas で描いた線を消す
