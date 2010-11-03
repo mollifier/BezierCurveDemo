@@ -20,8 +20,11 @@ var Draw = {
     context: null,
 
     drawBezierCurve: function() {
-        this.drawLines(this.getControlPoints(), "#ff4500", 1.0);
-        this.drawLines(this.getDrawPoints(), "#0000ff", 3.0);
+        var controlPoints = this.getInputControlPoints();
+        var bezierPoints = this.getDrawPoints(controlPoints);
+
+        this.drawLines(controlPoints, "#ff4500", 1.0);
+        this.drawLines(bezierPoints, "#0000ff", 3.0);
     },
 
     // @points: 点の配列
@@ -41,7 +44,7 @@ var Draw = {
 
     // input 要素に入力された制御点の配列を取得する
     // １つの制御点は [x座標, y座標] の順で並んだ整数値の配列で表す
-    getControlPoints: function() {
+    getInputControlPoints: function() {
         var controlPoints = [];
 
         var pointsElement = document.getElementById("controlPoints");
@@ -59,15 +62,14 @@ var Draw = {
     },
 
     // ベジエ曲線を折れ線で近似した点の配列を取得する
-    getDrawPoints: function() {
+    getDrawPoints: function(controlPoints) {
         var ret = [];
 
         // 折れ線で近似する点の個数を取得する
         var numOfPoints = document.getElementById("numOfPoints").value;
         numOfPoints = this.strToInt(numOfPoints);
 
-        ret = BezierCurve.getBezierCurvePoints(
-            numOfPoints, this.getControlPoints());
+        ret = BezierCurve.getBezierCurvePoints(numOfPoints, controlPoints);
 
         return ret;
     },
@@ -86,3 +88,4 @@ var Draw = {
 
 window.addEventListener("load", function() { Draw.init(); }, false);
 
+// vim:set tabstop=4 shiftwidth=4 softtabstop=0:
