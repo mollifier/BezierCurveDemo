@@ -1,0 +1,12 @@
+これは何?
+
+JavaScript を使ってベジエ曲線を描画するサンプルです。
+
+canvas には quadraticCurveTo(2次)、bezierCurveTo(3次)という
+ベジエ曲線を描画するメソッドがありますが、
+それらを使わずにベジエ曲線を描きます。
+cancas の lineTo メソッドを使用し、曲線を折れ線で近似して描きます。
+
+ライセンス : MIT License
+http://www.opensource.org/licenses/mit-license.php
+
