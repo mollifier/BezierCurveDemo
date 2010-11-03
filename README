@@ -10,3 +10,8 @@ cancas の lineTo メソッドを使用し、曲線を折れ線で近似して�
 ライセンス : MIT License
 http://www.opensource.org/licenses/mit-license.php
 
+テストを実行するには rhinounit が必要です。
+http://code.google.com/p/rhinounit/
+
+rhinounit を実行するには java, ant, Rhino が必要です。
+
