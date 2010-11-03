@@ -6,7 +6,13 @@ var Draw = {
 
         var self = this;
         document.getElementById("drawButton").
-            addEventListener("click", function() { self.drawBezierCurve(); }, false);
+            addEventListener("click", function() {
+                    if (self.bezierCurveIsShown) {
+                        self.clear();
+                    }
+                    self.drawBezierCurve();
+                },
+            false);
 
         document.getElementById("clearButton").
             addEventListener("click", function() {
