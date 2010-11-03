@@ -2,6 +2,8 @@
 
 var Draw = {
     init: function() {
+        this.initControlPoints();
+
         this.canvas = document.getElementById("BezierCurve");
         this.context = this.canvas.getContext("2d");
 
@@ -10,7 +12,10 @@ var Draw = {
             addEventListener("click", function() { self.drawBezierCurve(); }, false);
 
         document.getElementById("clearButton").
-            addEventListener("click", function() { self.clear(); }, false);
+            addEventListener("click", function() {
+                    self.clear();
+                    self.initControlPoints(); },
+                false);
 
         var dx = 40;
         var dy = 50;
@@ -55,6 +60,12 @@ var Draw = {
             this.context.lineTo(points[i][0], points[i][1]);
         }
         this.context.stroke();
+    },
+
+    initialControlPoints : [[10, 30], [180, 400], [270, 50]],
+
+    initControlPoints : function() {
+        this.setInputControlPoints(this.initialControlPoints);
     },
 
     // input 要素に入力された制御点の配列を取得する
