@@ -2,15 +2,6 @@
   position : relative;
 }
 
-.control-point {
-  position : absolute;
-  background : #00ff00;
-  color : #ffffff;
-  width : 10px;
-  height : 10px;
-  z-index = 255;
-}
-
 #slider-area {
   position : relative;
   height : 100px;
