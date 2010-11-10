@@ -59,18 +59,16 @@ var BezierCurve = {
     // ベジエ曲線上の1つの点を取得する
     // @points : 任意の数の制御点を格納した配列
     bezierPointT : function(t, points) {
-        var temp = [];
-
-        while (points.length >= 2) {
-            temp = [];
-            for (var i = 0; i <= points.length - 2; i++) {
-                temp.push(
+        if (points.length >= 2) {
+            var dividedPoints = [];
+            for (var i = 0; i < points.length - 1; i++) {
+                dividedPoints.push(
                     BezierCurve.dividePoint(t, points[i], points[i+1]));
             }
-            points = temp;
+            return BezierCurve.bezierPointT(t, dividedPoints);
+        } else {
+            return points[0];
         }
-
-        return points[0];
     },
 
     // ベジエ曲線の制御点を与え、
