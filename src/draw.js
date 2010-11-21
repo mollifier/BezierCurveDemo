@@ -77,7 +77,7 @@ var Draw = {
     },
 
     initialCanvasSize : { width: 500, height : 500 },
-    initialControlPoints : [[10, 30], [180, 400], [260, 80]],
+    initialControlPoints : [[10, 30], [130, 400], [400, 380], [450, 70]],
     initialMagnifyScale : 2,
 
     initValues : function() {
