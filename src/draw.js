@@ -24,6 +24,12 @@ var Draw = {
                     self.initValues(); },
                 false);
 
+        document.getElementById("clearButton2nd").
+            addEventListener("click", function() {
+                    self.clear();
+                    self.initValues(2); },
+                false);
+
         var dx = 40;
         var dy = 50;
 
@@ -81,7 +87,9 @@ var Draw = {
     initialControlPoints3rdOrder : [[10, 30], [130, 400], [400, 380], [450, 70]],
     initialMagnifyScale : 2,
 
-    initValues : function(secondOrder) {
+    // @order : 制御点を初期化する際の次数
+    // 例えば order が2の場合は3つの制御点が指定され、2次の曲線が描かれる
+    initValues : function(order) {
         if (! this.canvas) {
             this.canvas = document.getElementById("BezierCurve");
         }
@@ -92,7 +100,7 @@ var Draw = {
         this.canvas.height = this.initialCanvasSize.height;
 
         var initialPoints = this.initialControlPoints3rdOrder;
-        if (secondOrder) {
+        if (order === 2) {
             initialPoints = this.initialControlPoints2ndOrder;
         }
         this.setInputControlPoints(initialPoints);
@@ -123,15 +131,21 @@ var Draw = {
     },
 
     // input 要素の入力値を指定された制御点の座標で上書きする
+    // 入力欄より指定された点の数が少ない場合、残りの入力欄は空欄とする
     setInputControlPoints: function(points) {
         var pointsElement = document.getElementById("controlPoints");
 
         var xPoints = pointsElement.getElementsByClassName("pointX");
         var yPoints = pointsElement.getElementsByClassName("pointY");
 
-        for (var i = 0; i < points.length && i < xPoints.length && i < yPoints.length ; i++) {
-            xPoints[i].value = points[i][0].toString();
-            yPoints[i].value = points[i][1].toString();
+        for (var i = 0; i < xPoints.length && i < yPoints.length ; i++) {
+            if (i < points.length) {
+                xPoints[i].value = points[i][0].toString();
+                yPoints[i].value = points[i][1].toString();
+            } else {
+                xPoints[i].value = "";
+                yPoints[i].value = "";
+            }
         }
     },
 
