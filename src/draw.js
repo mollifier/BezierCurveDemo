@@ -106,8 +106,12 @@ var Draw = {
 
         var point;
         for (var i = 0; i < xPoints.length; i++) {
-            point = [this.strToInt(xPoints[i].value), this.strToInt(yPoints[i].value)];
-            controlPoints.push(point);
+            point = [this.strToFloat(xPoints[i].value), this.strToFloat(yPoints[i].value)];
+            // 数値に変換できなかった場合は無視する
+            // これにより、入力欄を空にすることによって次数の低い曲線を描画できる
+            if (point[0] !== null && point[1] !== null) {
+                controlPoints.push(point);
+            }
         }
 
         return controlPoints;
@@ -120,7 +124,7 @@ var Draw = {
         var xPoints = pointsElement.getElementsByClassName("pointX");
         var yPoints = pointsElement.getElementsByClassName("pointY");
 
-        for (var i = 0; i < xPoints.length; i++) {
+        for (var i = 0; i < points.length && i < xPoints.length && i < yPoints.length ; i++) {
             xPoints[i].value = points[i][0].toString();
             yPoints[i].value = points[i][1].toString();
         }
