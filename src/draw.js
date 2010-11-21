@@ -196,15 +196,31 @@ var Draw = {
     },
 
     // 文字列が表す整数値に変換する
+    // 変換できない場合は null を返す
     strToInt: function(str) {
+        var ret = null;
         str = str.replace(/^\s+/, "").replace(/\s+$/, "");
-        return parseInt(str, 10);
+        if (str !== "") {
+            ret = parseInt(str, 10);
+            if (isNaN(ret)) {
+                ret = null;
+            }
+        }
+        return ret;
     },
 
     // 文字列が表す実数値に変換する
+    // 変換できない場合は null を返す
     strToFloat: function(str) {
+        var ret = null;
         str = str.replace(/^\s+/, "").replace(/\s+$/, "");
-        return parseFloat(str);
+        if (str !== "") {
+            ret = parseFloat(str);
+            if (isNaN(ret)) {
+                ret = null;
+            }
+        }
+        return ret;
     }
 };
 
