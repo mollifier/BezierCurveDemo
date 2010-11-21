@@ -77,10 +77,11 @@ var Draw = {
     },
 
     initialCanvasSize : { width: 500, height : 500 },
-    initialControlPoints : [[10, 30], [130, 400], [400, 380], [450, 70]],
+    initialControlPoints2ndOrder : [[10, 30], [180, 400], [260, 80]],
+    initialControlPoints3rdOrder : [[10, 30], [130, 400], [400, 380], [450, 70]],
     initialMagnifyScale : 2,
 
-    initValues : function() {
+    initValues : function(secondOrder) {
         if (! this.canvas) {
             this.canvas = document.getElementById("BezierCurve");
         }
@@ -90,7 +91,11 @@ var Draw = {
         this.canvas.width = this.initialCanvasSize.width;
         this.canvas.height = this.initialCanvasSize.height;
 
-        this.setInputControlPoints(this.initialControlPoints);
+        var initialPoints = this.initialControlPoints3rdOrder;
+        if (secondOrder) {
+            initialPoints = this.initialControlPoints2ndOrder;
+        }
+        this.setInputControlPoints(initialPoints);
         this.setMagnifyScale(this.initialMagnifyScale);
     },
 
